@@ -1,5 +1,7 @@
+import { Header as HeaderAll } from "./components/Global/Header";
+
 const App = () => {
-  return <h1>NomadRoom</h1>;
+  return <HeaderAll />;
 };
 
 export default App;

@@ -10,17 +10,16 @@ import {
 
 export const SearchDashboard = () => {
   useEffect(() => {
-    const district = async () => {
-      const response = await apiEstados.get("/distritos");
-      try {
-        const { data } = response;
-        console.log(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    district();
+    // const district = async () => {
+    //   const response = await apiEstados.get("/distritos");
+    //   try {
+    //     const { data } = response;
+    //     console.log(data);
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // };
+    // district();
   }, []);
 
   return (

@@ -1,3 +1,9 @@
+
+import Register from "../../components/Register";
 export const RegisterPage = () => {
-  return <h1>Register</h1>;
+  return (
+<Register/>
+
+
+  );
 };

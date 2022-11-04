@@ -1,5 +1,16 @@
+import React from "react";
+import "./app.css";
+import { RoutesMain } from "./routes/routes";
+
+import { StyledGlobal } from "./styles/global";
+
 const App = () => {
-  return <h1>NomadRoom</h1>;
+  return (
+    <>
+      <RoutesMain />
+      <StyledGlobal />
+    </>
+  );
 };
 
 export default App;

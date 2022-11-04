@@ -8,7 +8,7 @@ export const StyledInput = styled.input`
   outline: none;
   box-sizing: border-box;
   background-color: var(--color-gray5);
-  border-radius: var(--bd-radius1);
+  border-radius: var(--bd-radius);
   transition-duration: 0.3s;
   color: var(--color-gray1);
 

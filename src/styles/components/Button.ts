@@ -6,7 +6,7 @@ export const StyledButton = styled.button`
   padding: 14px 20px;
   background-color: var(--color-primary);
   border: none;
-  border-radius: var(--bd-radius1);
+  border-radius: var(--bd-radius);
   cursor: pointer;
   transition-duration: 0.4s;
 

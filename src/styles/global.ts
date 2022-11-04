@@ -27,7 +27,7 @@ export const StyledGlobal = createGlobalStyle`
     --sz-text1: 16px;
     --sz-text2: 14px;
 
-    --bd-radius1: 10px;
+    --bd-radius: 10px;
 
     --shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
   }

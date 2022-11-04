@@ -1,12 +1,9 @@
-import { HeadlineBig } from "./components/Global/Headlines/HeadlineBig";
+import { RoutesMain } from "./routes/routes";
 
 const App = () => {
   return (
     <>
-      <h1>NomadRoom</h1>
-      <HeadlineBig>
-        <h1>Olas</h1>
-      </HeadlineBig>
+      <RoutesMain />
     </>
   );
 };

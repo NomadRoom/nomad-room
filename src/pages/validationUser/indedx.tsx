@@ -1,3 +1,9 @@
+import { ValidationUser } from "../../components/ValidationUser";
+
 export const ValidationPage = () => {
-  return <h1>Validation</h1>;
+  return (
+    <>
+      <ValidationUser />
+    </>
+  );
 };

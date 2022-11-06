@@ -1,5 +1,11 @@
+import { RoutesMain } from "./routes/routes";
+
 const App = () => {
-  return <h1>NomadRoom</h1>;
+  return (
+    <>
+      <RoutesMain/>
+    </>
+  )
 };
 
 export default App;

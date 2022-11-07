@@ -24,7 +24,7 @@ export const ContainerRegisterRoom = styled.div`
   }
 `;
 
-export const ContainerFormRoom = styled.div`
+export const ContainerFormRoom = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -107,7 +107,7 @@ export const ContainerAboutRoom = styled.div`
   }
 `;
 
-export const LocationRoom = styled.div`
+export const LocationRoom = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;

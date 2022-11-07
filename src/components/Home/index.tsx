@@ -46,4 +46,5 @@ export const Homepage = () => {
       </StyledHome>
     </>
   );
+  
 };

@@ -1,8 +1,15 @@
 import { createContext } from "react";
-import { iAuthProvider } from "./types";
+import { iAuthProvider, iRegisterTechProps } from "./types";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }: iAuthProvider) => {
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  const UserValidation = (data: iRegisterTechProps) => {
+    console.log(data);
+  };
+  return (
+    <AuthContext.Provider value={{ UserValidation }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

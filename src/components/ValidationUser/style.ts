@@ -57,25 +57,21 @@ export const DivInputs = styled.div`
   gap: 1rem;
   align-items: center;
 
-  > label {
-    background-color: var(--color-gray5);
+  > div {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    height: 100px;
-    cursor: pointer;
-    transition: 0.7s;
-  }
-  > label:hover {
-    transform: scale(1.05);
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
   }
 
-  > input {
-    display: none;
+  > div > input {
+    width: 100%;
+    height: 100px;
     background-color: var(--color-gray5);
   }
-  > textarea {
+  > div > textarea {
     width: 100%;
     padding: 1rem;
     background-color: var(--color-gray5);
@@ -83,9 +79,13 @@ export const DivInputs = styled.div`
   @media (min-width: 1024px) {
     flex-direction: row;
 
-    > label {
+    > div:nth-child(1) {
+      width: 35%;
+    }
+
+    > div > input {
       height: 152px;
-      width: 25%;
+      width: 100%;
     }
   }
 `;

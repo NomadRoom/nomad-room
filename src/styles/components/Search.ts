@@ -4,8 +4,15 @@ import banner from "../../assets/img/banner.png";
 export const StyledBannerSearch = styled.div`
   width: 100vw;
   height: 370px;
-  background-size: contain;
-  background: url(${banner});
+  background-image: linear-gradient(
+      to right,
+      var(--color-bg-headline),
+      var(--color-bg-headline)
+    ),
+    url(${banner});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   /* background-repeat: no-repeat; */
 
   display: flex;
@@ -26,7 +33,7 @@ export const StyledContainerSearch = styled.div`
   }
 `;
 
-export const StyledInputSearch = styled.div`
+export const StyledFormSearch = styled.form`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -55,7 +62,7 @@ export const StyledInputSearch = styled.div`
 
   button {
     position: absolute;
-    right: 16px;
+    right: 15px;
     background-color: var(--color-primary);
     padding: 11px 16px;
     border-radius: 10px;
@@ -80,6 +87,31 @@ export const StyledInputSearch = styled.div`
         color: var(--color-white);
         font-weight: 700;
       }
+    }
+  }
+`;
+
+export const StyledSearchApi = styled.ul`
+  max-height: 193px;
+  overflow-y: auto;
+  width: 90%;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 322px;
+  list-style: none;
+  border-radius: 0 0 10px 10px;
+
+  @media (min-width: 768px) {
+    width: 700px;
+    top: 329px;
+  }
+
+  li {
+    padding: 14px 37px;
+    cursor: pointer;
+
+    :hover {
+      background-color: var(--color-gray5);
     }
   }
 `;

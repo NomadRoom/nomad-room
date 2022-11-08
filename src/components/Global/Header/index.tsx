@@ -17,8 +17,13 @@ import { Link as ReachLink } from "react-router-dom";
 
 import LogoDesktop from "../../../assets/logoDesktop.svg";
 import LogoMobile from "../../../assets/logoMobile.svg";
+import { useAuthContext } from "../../../contexts/AuthContext/hook";
 
 export const Header = () => {
+  const { userInfo, logout } = useAuthContext();
+
+  const { name, profile_photo } = userInfo;
+
   const token = localStorage.getItem("@NomadRoom:token");
 
   const [tablet] = useMediaQuery("(min-width: 550px)");
@@ -36,12 +41,7 @@ export const Header = () => {
         <Spacer />
         {token ? (
           <Flex alignItems="center" gap="16px">
-            <Avatar
-              w="45px"
-              h="45px"
-              name="Christian Nwamba"
-              src="https://bit.ly/code-beast"
-            />
+            <Avatar w="45px" h="45px" name={name} src={profile_photo} />
             <Menu>
               {({ isOpen }) => (
                 <>
@@ -50,9 +50,9 @@ export const Header = () => {
                     py={2}
                     transition="all 0.2s"
                     fontSize="1rem"
-                    fontWeight="500"
+                    fontWeight={["700", "700", "500"]}
                   >
-                    Leonardo {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                    {name} {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                   </MenuButton>
                   <MenuList border="none">
                     <Flex flexDirection="column">
@@ -83,10 +83,7 @@ export const Header = () => {
                         }}
                         as={ReachLink}
                         to="/"
-                        onClick={() => {
-                          localStorage.removeItem("@NomadRoom:token");
-                          localStorage.removeItem("@NomadRoom:userId");
-                        }}
+                        onClick={() => logout()}
                       >
                         Sair
                       </Link>
@@ -106,7 +103,7 @@ export const Header = () => {
               border="none"
               p="12px 20px"
               borderRadius="10px"
-              fontWeight="700"
+              fontWeight={["400", "700"]}
               _hover={{
                 background: "#D3FFDB",
               }}
@@ -121,7 +118,7 @@ export const Header = () => {
               border="none"
               p="12px 20px"
               borderRadius="10px"
-              fontWeight="700"
+              fontWeight={["400", "700"]}
               _hover={{
                 background: "#D3FFDB",
               }}

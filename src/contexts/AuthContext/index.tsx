@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const AuthContext = createContext<iAuthValues>({} as iAuthValues);
 
 export const AuthProvider = ({ children }: iAuthProvider) => {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const [userInfo, setUserInfo] = useState<iUser>({} as iUser);
@@ -24,56 +24,81 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
     try {
       const response = await api.post("/login", data);
 
-      const { user: userResponse, token } = response.data;
+      const { user, accessToken } = response.data;
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
-
-      setUserInfo(userResponse);
+      setUserInfo(user);
       window.localStorage.clear();
-      localStorage.setItem("@NomadRoom:token", token);
-      localStorage.setItem("@NomadRoom:userId", data.id);
+      localStorage.setItem("@NomadRoom:token", accessToken);
+      localStorage.setItem("@NomadRoom:userId", user.id);
 
       toast.success("Login Realizado");
 
-      setTimeout(() => {
-        const toNavigate = location.state?.from?.pathname || "validation";
+      const toNavigate = response.data.user.validation
+        ? "dashboard"
+        : "validation";
+      navigate(toNavigate, { replace: true });
 
-        navigate(toNavigate, { replace: true });
-      }, 2000);
-
-      console.log(userResponse);
+      console.log(user);
     } catch (error) {
       toast.error("Login não realizado");
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("@NomadRoom:token");
+    const userId = localStorage.getItem("@NomadRoom:userId");
+
+    const GetUser = async () => {
+      const response = await api.get(`/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const { data } = response;
+      setUserInfo(data);
+    };
+    if (!userInfo.id && token) {
+      GetUser();
+    }
+  }, []);
+
   const registerUser = async (data: iUseRegister) => {
     try {
       const response = await api.post("/register", data);
 
-      const { user: userResponse, token } = response.data;
+      const { user, accessToken } = response.data;
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
-
-      setUserInfo(userResponse);
-      window.localStorage.clear();
-      localStorage.setItem("@NomadRoom:token", token);
-      localStorage.setItem("@NomadRoom:userId", data.id);
+      setUserInfo(user);
+      localStorage.setItem("@NomadRoom:token", accessToken);
+      localStorage.setItem("@NomadRoom:userId", user.id);
       toast.success("Cadastro Realizado");
-      console.log(userResponse);
-      setTimeout(() => {
-        const toNavigate = location.state?.from?.pathname || "validation";
 
-        navigate(toNavigate, { replace: true });
-      }, 2000);
+      const toNavigate = response.data.user.validation
+        ? "dashboard"
+        : "validation";
+      navigate(toNavigate, { replace: true });
     } catch (error) {
       toast.error("cadastro nao realizado");
       console.error(error);
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem("@NomadRoom:token");
+    localStorage.removeItem("@NomadRoom:userId");
+    setUserInfo({} as iUser);
+  };
+
   const UserValidation = async (data: iValidation): Promise<void> => {
+    const { profile_photo } = data;
+
+    const updateUser = {
+      ...userInfo,
+      profile_photo: profile_photo,
+    };
+    setUserInfo(updateUser);
     const userId = localStorage.getItem("@NomadRoom:userId");
     const token = localStorage.getItem("@NomadRoom:token");
     try {
@@ -90,7 +115,14 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
 
   return (
     <AuthContext.Provider
-      value={{ UserValidation, login, registerUser, setUserInfo, userInfo }}
+      value={{
+        UserValidation,
+        login,
+        registerUser,
+        setUserInfo,
+        userInfo,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>

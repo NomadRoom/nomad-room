@@ -16,6 +16,7 @@ export interface iAuthValues {
   setUserInfo: Dispatch<SetStateAction<iUser>>;
   login: (user: iUserLogin) => void;
   registerUser: (data: iUseRegister) => void;
+  logout: () => void;
 }
 
 export interface iUser {
@@ -28,6 +29,7 @@ export interface iUser {
   genre: string;
   profession: string;
   token: string;
+  profile_photo: string;
 }
 export interface iUserLogin {
   email: string;

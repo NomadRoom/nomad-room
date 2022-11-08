@@ -14,6 +14,7 @@ import {
   ContainerAboutRoom,
   ContainerFormRoom,
   ContainerRegisterRoom,
+  Error,
   LocationRoom,
 } from "../../styles/components/FormRoom";
 import { api } from "../../services/api";
@@ -67,7 +68,7 @@ export const FormRoom = () => {
   const [cityState, setCityState] = useState<string>("");
   const [street, setStreet] = useState<string>("");
 
-  const regex: RegExp = /^\[1-9]{2}9[1-9][0-9]{3}[0-9]{4}$/;
+  const regex: RegExp = /[1-9]{2}9[1-9][0-9]{3}[0-9]{4}/;
 
   const schema = yup.object().shape({
     title: yup.string().required("Título é obrigatorio"),
@@ -102,28 +103,39 @@ export const FormRoom = () => {
   });
 
   const onSubmitForm = async (data: iForm) => {
+    let bodyReq = {
+      userId: localStorage.getItem("@NomadRoom:userId"),
+      title: data.title,
+      description: data.description,
+      about: {
+        gym: data.gym,
+        garage: data.garage,
+        internet: data.internet,
+        animals: data.pets,
+        tv: data.tv,
+        furnished: data.furniture,
+      },
+      location: {
+        postal_code: data.CEP,
+        district: data.neighborhood,
+        street: data.street,
+        city: data.cityState,
+        number: data.number,
+      },
+      room_img: data.photo,
+      contact: data.contact,
+    }
+    console.log(bodyReq)
     try {
-      await api.post("/register/room", {
-        title: data.title,
-        description: data.description,
-        about: {
-          gym: data.gym,
-          garage: data.garage,
-          internet: data.internet,
-          animals: data.pets,
-          tv: data.tv,
-          furnished: data.furniture,
-        },
-        location: {
-          postal_code: data.CEP,
-          district: data.neighborhood,
-          street: data.street,
-          city: data.cityState,
-          number: data.number,
-        },
-        room_img: data.photo,
-        contact: data.contact,
-      });
+      await api.post(
+        "/rooms",
+        bodyReq,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@NomadRoom:token")}`,
+          },
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -131,7 +143,7 @@ export const FormRoom = () => {
 
   const cepListener = async (event: any) => {
     if (event.target.value.length === 8) {
-      console.log("batata")
+      console.log("batata");
       try {
         let response = await cepRequest.get<iCep>(`${event.target.value}/json`);
         console.log(response);
@@ -149,7 +161,7 @@ export const FormRoom = () => {
       <ContainerFormRoom onSubmit={handleSubmit(onSubmitForm)}>
         <label htmlFor="title">Titulo*</label>
         <StyledInput id="title" type="text" {...register("title")} />
-        {errors.title?.message}
+        <Error>{errors.title?.message}</Error>
         <label htmlFor="description">Descrição*</label>
         <textarea
           cols={30}
@@ -157,7 +169,7 @@ export const FormRoom = () => {
           id="description"
           {...register("description")}
         ></textarea>
-        {errors.description?.message}
+        <Error>{errors.description?.message}</Error>
         <label htmlFor="about">Sobre o quarto</label>
         <ContainerAboutRoom id="about">
           <li>
@@ -193,47 +205,56 @@ export const FormRoom = () => {
             onChange={cepListener}
             placeholder="CEP (somente numeros)"
           />
-          {errors.CEP?.message}
+          <Error>{errors.CEP?.message}</Error>
           <StyledInput
             type="text"
             value={neighborhood}
             {...register("neighborhood")}
+            onChange={(event) => {
+              setNeighborhood(event.target.value);
+            }}
             placeholder="Bairro"
           />
-          {errors.neighborhood?.message}
+          <Error>{errors.neighborhood?.message}</Error>
           <StyledInput
             type="text"
             value={cityState}
             {...register("cityState")}
+            onChange={(event) => {
+              setCityState(event.target.value);
+            }}
             placeholder="Cidade e Estado"
           />
-          {errors.cityState?.message}
+          <Error>{errors.cityState?.message}</Error>
           <StyledInput
             type="text"
             value={street}
             {...register("street")}
+            onChange={(event) => {
+              setStreet(event.target.value);
+            }}
             placeholder="Logradouro"
           />
-          {errors.street?.message}
+          <Error>{errors.street?.message}</Error>
           <StyledInput
             type="text"
             {...register("number")}
             placeholder="Numero"
           />
-          {errors.number?.message}
+          <Error>{errors.number?.message}</Error>
         </LocationRoom>
         <StyledInput
           type="text"
           {...register("photo")}
           placeholder="Url da foto"
         />
-        {errors.photo?.message}
+        <Error>{errors.photo?.message}</Error>
         <StyledInput
           type="text"
           {...register("contact")}
           placeholder="Contato"
         />
-        {errors.contact?.message}
+        <Error>{errors.contact?.message}</Error>
         <StyledButton type="submit">Disponibilizar</StyledButton>
       </ContainerFormRoom>
       <p>Todas as informações com (*) são obrigatórias</p>

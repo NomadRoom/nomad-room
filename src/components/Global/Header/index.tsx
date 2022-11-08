@@ -1,4 +1,4 @@
-// import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -16,8 +16,8 @@ import {
 
 import { Link as ReachLink } from "react-router-dom";
 
-// import LogoDesktop from "../../assets/logoDesktop.svg";
-// import LogoMobile from "../../assets/logoMobile.svg";
+import LogoDesktop from "../../../assets/logoDesktop.svg";
+import LogoMobile from "../../../assets/logoMobile.svg";
 
 export const Header = () => {
   const token = true;
@@ -30,7 +30,7 @@ export const Header = () => {
         <Box>
           <Heading>
             <Link as={ReachLink} to="/dashboard">
-              {/* <img src={tablet ? LogoDesktop : LogoMobile} alt="Logo" /> */}
+              <img src={tablet ? LogoDesktop : LogoMobile} alt="Logo" />
             </Link>
           </Heading>
         </Box>
@@ -53,7 +53,7 @@ export const Header = () => {
                     fontSize="1rem"
                     fontWeight="500"
                   >
-                    {/* Leonardo {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />} */}
+                    Leonardo {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                   </MenuButton>
                   <MenuList border="none">
                     <Flex flexDirection="column">

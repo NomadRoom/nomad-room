@@ -4,6 +4,9 @@ import { Header } from "../Global/Header";
 import { Text } from "@chakra-ui/react";
 import { ListRooms } from "../Global/ListRooms";
 import { HeadlineBig } from "../Global/Headlines/HeadlineBig";
+import { Box, IconButton, Image, Text, Icon } from "@chakra-ui/react";
+import { MdLocationPin } from "react-icons/md";
+
 
 export const Home = () => {
   const [listRooms, setListRooms] = useState<any>([]);

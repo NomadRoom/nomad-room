@@ -37,3 +37,5 @@ export const StyledGlobal = createGlobalStyle`
     color: var(--color-gray1);
   }
 `;
+
+

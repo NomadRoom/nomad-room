@@ -55,7 +55,7 @@ export const DivInputs = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
+  align-items: flex-start;
 
   > div {
     width: 100%;
@@ -68,8 +68,9 @@ export const DivInputs = styled.div`
 
   > div > input {
     width: 100%;
-    height: 100px;
+    height: 40px;
     background-color: var(--color-gray5);
+    padding: 5px;
   }
   > div > textarea {
     width: 100%;
@@ -80,14 +81,14 @@ export const DivInputs = styled.div`
     color: red;
   }
   @media (min-width: 1024px) {
-    flex-direction: row;
+    flex-direction: column;
 
     > div:nth-child(1) {
       width: 35%;
     }
 
     > div > input {
-      height: 152px;
+      height: 40px;
       width: 100%;
     }
   }

@@ -17,8 +17,8 @@ export const RoutesMain = () => {
       <Route element={<ProtectRoute />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/validation" element={<ValidationPage />} />
+        <Route path="/room/:id" element={<RoomPage />} />
       </Route>
-      <Route path="/room/:id" element={<RoomPage />} />
     </Routes>
   );
 };

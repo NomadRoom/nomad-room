@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaRegister from "../../validation/schemaRegister";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useContext, MouseEvent } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/userContext";
 
 import { StyledButton } from "../../styles/components/Button";

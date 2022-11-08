@@ -5,6 +5,7 @@ import { ListRooms } from "../Global/ListRooms";
 import { HeadlineBig } from "../Global/Headlines/HeadlineBig";
 import { Text } from "@chakra-ui/react";
 
+
 export const Home = () => {
   const [listRooms, setListRooms] = useState<any>([]);
 

@@ -24,7 +24,7 @@ export const ContainerRegisterRoom = styled.div`
   }
 `;
 
-export const ContainerFormRoom = styled.div`
+export const ContainerFormRoom = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -64,7 +64,7 @@ export const ContainerFormRoom = styled.div`
   }
 `;
 
-export const ContainerAboutRoom = styled.div`
+export const ContainerAboutRoom = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -72,10 +72,13 @@ export const ContainerAboutRoom = styled.div`
   width: 253px;
   flex-wrap: wrap;
   position: relative;
+  list-style: none;
 
-  h3 {
+  li {
     font-size: 1.125rem;
     text-align: start;
+    display: flex;
+    width: 40%;
   }
 
   label {
@@ -85,6 +88,7 @@ export const ContainerAboutRoom = styled.div`
     gap: 5px;
     font-size: 1rem;
     font-weight: 400;
+    margin-left: 5px;
 
     input {
       width: 20px;
@@ -117,4 +121,8 @@ export const LocationRoom = styled.div`
     font-size: 1.125rem;
     text-align: start;
   }
+`;
+
+export const Error = styled.p`
+  color: var(--color-error);
 `;

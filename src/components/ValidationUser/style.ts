@@ -16,10 +16,17 @@ export const FormValidation = styled.form`
   background-color: #fff;
 
   > button {
-    position: absolute;
-    right: 60px;
-    bottom: 30px;
-    width: 15rem;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1024px) {
+    > button {
+      position: absolute;
+      right: 40px;
+      bottom: 30px;
+      width: 15rem;
+    }
   }
 `;
 
@@ -46,12 +53,42 @@ export const DivInputs = styled.div`
   width: 90%;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+  align-items: center;
 
-  > input {
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  > div > input {
+    width: 100%;
+    height: 100px;
     background-color: var(--color-gray5);
   }
-  > textarea {
+  > div > textarea {
+    width: 100%;
+    padding: 1rem;
     background-color: var(--color-gray5);
+  }
+  > div > span {
+    color: red;
+  }
+  @media (min-width: 1024px) {
+    flex-direction: row;
+
+    > div:nth-child(1) {
+      width: 35%;
+    }
+
+    > div > input {
+      height: 152px;
+      width: 100%;
+    }
   }
 `;

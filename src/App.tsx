@@ -1,13 +1,15 @@
-import React from "react";
-import "./app.css";
+import { AuthProvider } from "./contexts/AuthContext";
 import { RoutesMain } from "./routes/routes";
+
 
 import { StyledGlobal } from "./styles/global";
 
 const App = () => {
   return (
     <>
-      <RoutesMain />
+      <AuthProvider>
+        <RoutesMain />
+      </AuthProvider>
       <StyledGlobal />
     </>
   );

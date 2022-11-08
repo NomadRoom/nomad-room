@@ -9,9 +9,11 @@ export const Container = styled.section`
 
 export const ContainerCard = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
-  padding: 36px 38px;
+  padding: 30px;
   border: 1px solid var(--color-gray4);
   border-radius: var(--bd-radius);
   align-self: flex-end;
@@ -19,10 +21,13 @@ export const ContainerCard = styled.div`
   width: 100%;
   background-color: var(--color-white);
 
+  @media screen and (min-width: 390px) {
+    flex-direction: row;
+  }
+
   @media screen and (min-width: 1024px) {
-    width: max-content;
+    max-width: 266px;
     flex-direction: column;
-    gap: 20px;
     margin-top: -60px;
     margin-right: 30px;
   }
@@ -31,7 +36,7 @@ export const ContainerCard = styled.div`
     display: flex;
     gap: 16px;
     width: max-content;
-    padding: 14px;
+    padding: 14px 20px;
     background-color: var(--color-primary);
     color: var(--color-white);
     border-radius: var(--bd-radius);

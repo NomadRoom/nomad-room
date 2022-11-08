@@ -1,10 +1,10 @@
-import { userInfo } from "os";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import { ContainerWrapper } from "../../styles/components/Container";
 import { Header } from "../Global/Header";
 import { Contact } from "./Contact";
+import { RoomDescription } from "./RoomDescription";
 import { RoomPhoto } from "./RoomPhoto";
 import { ContainerPhotoContact } from "./styles";
 
@@ -21,7 +21,7 @@ export interface iUser {
   id: number;
 }
 
-interface iRoom {
+export interface iRoom {
   userId: number;
   title: string;
   description: string;
@@ -59,6 +59,7 @@ export const Room = () => {
           _expand: "user",
         },
       });
+
       const { data } = response;
       console.log(data);
       setRoom(data);
@@ -77,6 +78,8 @@ export const Room = () => {
               <RoomPhoto urlImg={room.room_photo} />
               <Contact contact={room.contact} user={room.user} />
             </ContainerPhotoContact>
+
+            <RoomDescription room={room} />
           </ContainerWrapper>
         </>
       ) : (

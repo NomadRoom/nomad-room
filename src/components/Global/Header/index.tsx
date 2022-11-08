@@ -1,3 +1,4 @@
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -13,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 
 import { Link as ReachLink } from "react-router-dom";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 import LogoDesktop from "../../../assets/logoDesktop.svg";
 import LogoMobile from "../../../assets/logoMobile.svg";

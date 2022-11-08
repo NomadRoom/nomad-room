@@ -22,11 +22,18 @@ export const FormBox = styled.div`
         rgba(35, 35, 35, 0.65)
       ),
       url(sasha-kaunas-hEAGekaiJ8g-unsplash.jpg);
+      @media (max-width: 480px) {
+      position: absolute;
+      width: 600px;
+      height: 180px;
+      left: 0px;
+      top: 79px;
+    }
   }
 `;
 
 export const FormLogin = styled.form`
-  position: absolute;
+position: absolute;
   width: 512px;
   height: 357px;
   left: 677px;
@@ -41,7 +48,12 @@ export const FormLogin = styled.form`
   align-items: center;
   margin-top: 20px;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
-
+  @media (max-width: 480px) {
+    position: absolute;
+    width: 358px;
+    left: 28px;
+    top: 120px;
+  }
   p {
     height: 12px;
   }
@@ -53,5 +65,10 @@ export const FormLogin = styled.form`
     line-height: 28px;
     color: var(--color-gray1);
     margin-right: 270px;
+    @media (max-width: 480px) {
+      width: 196.73px;
+      height: 51.82px;
+      margin-right: 110px;
+    }
   }
 `;

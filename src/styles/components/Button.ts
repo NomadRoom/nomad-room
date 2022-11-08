@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   font-size: var(--sz-text-2);
+  font-family: 'Inter';
   color: var(--color-white);
   padding: 14px 20px;
   background-color: var(--color-primary);
@@ -14,5 +15,9 @@ height: 55px;
 
   &:hover {
     filter: brightness(1.05);
+  }
+  @media (max-width:480px){
+    width: 296.82px;
+
   }
 `;

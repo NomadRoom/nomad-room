@@ -2,17 +2,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaRegister from "../../validation/schemaRegister";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useContext, MouseEvent } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/userContext";
 
 import { StyledButton } from "../../styles/components/Button";
 import { StyledInput } from "../../styles/components/Input";
 import { Form, FormBox } from "./styles";
-import { iUseRegister } from "../../contexts/AuthContext/types";
+import { iUseRegister } from "../../contexts/userContext/types";
 import Retangle from "../../assets/Rectangle.png";
-
 
 export const Register = () => {
   const { registerUser } = useContext(AuthContext);
@@ -81,9 +80,7 @@ export const Register = () => {
         <p>{errors.profession?.message}</p>
 
         <StyledButton type="submit">Cadastrar</StyledButton>
-        
       </Form>
-      
     </FormBox>
   );
 };

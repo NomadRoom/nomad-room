@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Header } from "../Global/Header";
-import { Text } from "@chakra-ui/react";
 import { ListRooms } from "../Global/ListRooms";
 import { HeadlineBig } from "../Global/Headlines/HeadlineBig";
+import { Text } from "@chakra-ui/react";
 
 
 export const Home = () => {

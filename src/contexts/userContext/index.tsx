@@ -36,7 +36,7 @@ const AuthProvider = ({ children }: iAuthProviderProps) => {
       toast.success("Login Realizado");
 
       setTimeout(() => {
-        const toNavigate = location.state?.from?.pathname || "dashboard";
+        const toNavigate = location.state?.from?.pathname || "validation";
 
         navigate(toNavigate, { replace: true });
       }, 2000);
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }: iAuthProviderProps) => {
       toast.success("Cadastro Realizado");
       console.log(userResponse);
       setTimeout(() => {
-        const toNavigate = location.state?.from?.pathname || "dashboard";
+        const toNavigate = location.state?.from?.pathname || "validation";
 
         navigate(toNavigate, { replace: true });
       }, 2000);

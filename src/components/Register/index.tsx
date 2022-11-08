@@ -1,15 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaRegister from "../../validation/schemaRegister";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { StyledButton } from "../../styles/components/Button";
 import { StyledInput } from "../../styles/components/Input";
-import { Form, FormBox } from "./styles";
-import Retangle from "../../assets/Rectangle.png";
+import { ContainerFormRegister, FormRegister } from "./styles";
 import { iUseRegister } from "../../contexts/AuthContext/types";
 import { useAuthContext } from "../../contexts/AuthContext/hook";
 import { Header } from "../Global/Header";
+import { HeadlineMedium } from "../Global/Headlines/HeadlineMedium";
 
 export const Register = () => {
   const { registerUser } = useAuthContext();
@@ -25,11 +23,10 @@ export const Register = () => {
   return (
     <>
       <Header />
-      <FormBox>
-        <ToastContainer />
-        <img src={Retangle} alt="" />
+      <HeadlineMedium />
 
-        <Form onSubmit={handleSubmit(registerUser)}>
+      <ContainerFormRegister>
+        <FormRegister onSubmit={handleSubmit(registerUser)}>
           <h2>Faça seu Cadastro</h2>
 
           <label htmlFor="name"></label>
@@ -80,8 +77,8 @@ export const Register = () => {
           <p>{errors.profession?.message}</p>
 
           <StyledButton type="submit">Cadastrar</StyledButton>
-        </Form>
-      </FormBox>
+        </FormRegister>
+      </ContainerFormRegister>
     </>
   );
 };

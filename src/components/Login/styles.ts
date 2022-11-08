@@ -9,7 +9,7 @@ export const ContainerFormLogin = styled.section`
 `;
 
 export const FormLogin = styled.form`
-  width: 512px;
+  max-width: 512px;
   height: 357px;
   background: var(--color-white);
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
@@ -20,11 +20,12 @@ export const FormLogin = styled.form`
   justify-content: center;
   align-items: center;
   margin-top: -90px;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
   padding: 40px;
+
   p {
     height: 12px;
   }
+
   h2 {
     font-family: "Roboto";
     font-style: normal;

@@ -1,20 +1,17 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaRegister from "../../validation/schemaRegister";
-
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/userContext";
-
 import { StyledButton } from "../../styles/components/Button";
 import { StyledInput } from "../../styles/components/Input";
 import { Form, FormBox } from "./styles";
-import { iUseRegister } from "../../contexts/userContext/types";
 import Retangle from "../../assets/Rectangle.png";
+import { iUseRegister } from "../../contexts/AuthContext/types";
+import { useAuthContext } from "../../contexts/AuthContext/hook";
 
 export const Register = () => {
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser } = useAuthContext();
 
   const {
     register,

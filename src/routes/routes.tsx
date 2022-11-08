@@ -4,7 +4,7 @@ import { DashboardPage } from "../pages/dashboard";
 import { HomePage } from "../pages/home";
 import { LoginPage } from "../pages/login";
 import { RegisterPage } from "../pages/register";
-
+import { RoomPage } from "../pages/room";
 
 export const RoutesMain = () => {
   return (
@@ -14,6 +14,7 @@ export const RoutesMain = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/validation" element={<ValidationPage />} />
+      <Route path="/room/:id" element={<RoomPage />} />
     </Routes>
   );
 };

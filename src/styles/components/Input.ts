@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledInput = styled.input`
   font-size: var(--sz-text2);
   padding: 16px 18px;
-  width: 100%;
+  width: 430px;
   border: none;
   outline: none;
   box-sizing: border-box;
@@ -19,5 +19,9 @@ export const StyledInput = styled.input`
 
   &:is(:hover, :focus) {
     background-color: var(--color-gray4);
+  }
+  @media (max-width:480px){
+    width: 296.82px;
+
   }
 `;

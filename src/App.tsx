@@ -1,11 +1,16 @@
-import { FormRoom } from "./components/Register/formRoom";
+import { AuthProvider } from "./contexts/AuthContext";
 import { RoutesMain } from "./routes/routes";
+
+
+import { StyledGlobal } from "./styles/global";
 
 const App = () => {
   return (
     <>
-      <RoutesMain />
-      <FormRoom></FormRoom>
+      <AuthProvider>
+        <RoutesMain />
+      </AuthProvider>
+      <StyledGlobal />
     </>
   );
 };

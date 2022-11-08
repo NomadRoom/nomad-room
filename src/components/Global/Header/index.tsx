@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+
 import {
   Avatar,
   Box,
@@ -53,7 +53,7 @@ export const Header = () => {
                     fontSize="1rem"
                     fontWeight="500"
                   >
-                    Leonardo {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                    Leonardo 
                   </MenuButton>
                   <MenuList border="none">
                     <Flex flexDirection="column">
@@ -83,7 +83,7 @@ export const Header = () => {
                           background: "#D3FFDB",
                         }}
                         as={ReachLink}
-                        to="/home"
+                        to="/"
                       >
                         Sair
                       </Link>

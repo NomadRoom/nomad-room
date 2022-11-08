@@ -2,7 +2,7 @@ import styled from "styled-components";
 import banner from "../../assets/img/banner.png";
 
 export const StyledBannerSearch = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 370px;
   background-image: linear-gradient(
       to right,
@@ -13,7 +13,6 @@ export const StyledBannerSearch = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-repeat: no-repeat; */
 
   display: flex;
   justify-content: center;

@@ -16,8 +16,8 @@ import {
 
 import { Link as ReachLink } from "react-router-dom";
 
-import LogoDesktop from "../../assets/logoDesktop.svg";
-import LogoMobile from "../../assets/logoMobile.svg";
+import LogoDesktop from "../../../assets/logoDesktop.svg";
+import LogoMobile from "../../../assets/logoMobile.svg";
 
 export const Header = () => {
   const token = true;

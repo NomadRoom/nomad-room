@@ -1,9 +1,12 @@
+import { AuthProvider } from "./contexts/AuthContext";
 import { RoutesMain } from "./routes/routes";
 
 const App = () => {
   return (
     <>
-      <RoutesMain />
+      <AuthProvider>
+        <RoutesMain />
+      </AuthProvider>
     </>
   );
 };

@@ -76,6 +76,9 @@ export const DivInputs = styled.div`
     padding: 1rem;
     background-color: var(--color-gray5);
   }
+  > div > span {
+    color: red;
+  }
   @media (min-width: 1024px) {
     flex-direction: row;
 

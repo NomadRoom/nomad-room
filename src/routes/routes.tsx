@@ -4,7 +4,7 @@ import { DashboardPage } from "../pages/dashboard";
 import { HomePage } from "../pages/home";
 import { LoginPage } from "../pages/login";
 import { RegisterPage } from "../pages/register";
-
+import { ProtectRoute } from "./ProtectRoute";
 
 export const RoutesMain = () => {
   return (
@@ -12,8 +12,11 @@ export const RoutesMain = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/validation" element={<ValidationPage />} />
+
+      <Route element={<ProtectRoute />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/validation" element={<ValidationPage />} />
+      </Route>
     </Routes>
   );
 };

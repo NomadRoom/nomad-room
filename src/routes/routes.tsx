@@ -1,16 +1,16 @@
-
-import { Route, Routes } from 'react-router-dom';
-import { LoginPage } from '../pages/login';
-import { RegisterPage } from '../pages/register';
-import { DashboardPage } from '../pages/dashboard';
+import { Route, Routes } from "react-router-dom";
+import { ValidationPage } from "../pages/validationUser/indedx";
+import { Homepage } from "../components/Home";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 export const RoutesMain = () => {
   return (
-     <Routes>
-    <Route path="*" element={ <LoginPage/> } />
-    <Route path="/register" element={ <RegisterPage/> } />
-    <Route path="/dashboard" element={ <DashboardPage/> } />
-    
-  </Routes>
-  )
+    <Routes>
+      <Route path="/validation" element={<ValidationPage />} />
+      <Route path='/' element={<Homepage/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/register' element={<Register/>}/>
+    </Routes>
+  );
 };

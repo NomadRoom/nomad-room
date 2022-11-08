@@ -1,4 +1,3 @@
-import { userInfo } from "os";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
@@ -60,6 +59,7 @@ export const Room = () => {
           _expand: "user",
         },
       });
+
       const { data } = response;
       console.log(data);
       setRoom(data);

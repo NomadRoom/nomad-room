@@ -24,14 +24,14 @@ const AuthProvider = ({ children }: iAuthProviderProps) => {
     try {
       const response = await api.post("/login", data);
 
-      const { user: userResponse, token } = response.data;
+      const { user: userResponse, accessToken } = response.data;
 
-      api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${accessToken}`;
 
       setUserInfo(userResponse);
       window.localStorage.clear();
-      localStorage.setItem("@NomadRoom:token", token);
-      localStorage.setItem("@NomadRoom:userId", data.id);
+      localStorage.setItem("@NomadRoom:token", accessToken);
+      localStorage.setItem("@NomadRoom:userId", userResponse.id);
 
       toast.success("Login Realizado");
 

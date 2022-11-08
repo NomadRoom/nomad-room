@@ -11,6 +11,7 @@ import Retangle from "../../assets/Rectangle.png";
 import { FormLogin } from "./styles";
 import { iUserLogin } from "../../contexts/userContext/types";
 import { FormBox } from "../Login/styles";
+import { Header } from "../Global/Header";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -24,20 +25,23 @@ const Login = () => {
   });
 
   return (
-    <FormBox>
-      <ToastContainer />
-      <img src={Retangle} alt="" />
-      <FormLogin onSubmit={handleSubmit(login)}>
-        <h2>Faça seu Login</h2>
-        <label htmlFor="Email"></label>
-        <StyledInput placeholder="Email" {...register("email")} />
-        <p>{errors.email?.message}</p>
-        <label htmlFor="Senha"></label>
-        <StyledInput placeholder="Senha" {...register("password")} />
-        <p>{errors.password?.message}</p>
-        <StyledButton type="submit">Entrar</StyledButton>
-      </FormLogin>
-    </FormBox>
+    <>
+      <Header />
+      <FormBox>
+        <ToastContainer />
+        <img src={Retangle} alt="" />
+        <FormLogin onSubmit={handleSubmit(login)}>
+          <h2>Faça seu Login</h2>
+          <label htmlFor="Email"></label>
+          <StyledInput placeholder="Email" {...register("email")} />
+          <p>{errors.email?.message}</p>
+          <label htmlFor="Senha"></label>
+          <StyledInput placeholder="Senha" {...register("password")} />
+          <p>{errors.password?.message}</p>
+          <StyledButton type="submit">Entrar</StyledButton>
+        </FormLogin>
+      </FormBox>
+    </>
   );
 };
 

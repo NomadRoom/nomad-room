@@ -20,4 +20,8 @@ export const StyledInput = styled.input`
   &:is(:hover, :focus) {
     background-color: var(--color-gray4);
   }
+  @media (max-width:480px){
+    width: 296.82px;
+
+  }
 `;

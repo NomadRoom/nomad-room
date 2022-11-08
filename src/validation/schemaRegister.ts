@@ -9,8 +9,8 @@ const SchemaRegister = yup.object().shape({
       .string()
       .min(8, "No minimo 8 caracteres")
       .required("Senha Obrigatoria"),
-    age: yup.string().required("idade Obrigatoria"),
-    profession: yup.string().required("Profissao Obrigatoria"),
-    genre: yup.string().required("genero obrigatório"),
+    age: yup.string().required("idade Obrigatória"),
+    profession: yup.string().required("Profissao Obrigatória"),
+    genre: yup.string().required("genero Obrigatório"),
   });
   export default SchemaRegister

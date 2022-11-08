@@ -3,7 +3,7 @@ import { api } from "../../services/api";
 import { Header } from "../Global/Header";
 import { HeadlineBig } from "../Global/Headlines/HeadlineBig";
 import { Box, IconButton, Image, Text, Icon } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
+
 import { MdLocationPin } from "react-icons/md";
 
 export const Homepage = () => {
@@ -99,7 +99,7 @@ export const Homepage = () => {
                     </Box>
                     <IconButton
                       aria-label="Search database"
-                      icon={<StarIcon />}
+                 
                       alignSelf="flex-start"
                       m="5"
                       position={"absolute"}

@@ -83,7 +83,7 @@ export const Header = () => {
                           background: "#D3FFDB",
                         }}
                         as={ReachLink}
-                        to="/home"
+                        to="/"
                       >
                         Sair
                       </Link>

@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
       navigate("/dashboard");
     } catch (error) {
       toast.error("Algo deu errado");
-
       console.log(error);
     }
   };

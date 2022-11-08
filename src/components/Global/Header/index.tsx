@@ -1,9 +1,7 @@
-
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
-  Button,
   ButtonGroup,
   Flex,
   Heading,
@@ -21,7 +19,7 @@ import LogoDesktop from "../../../assets/logoDesktop.svg";
 import LogoMobile from "../../../assets/logoMobile.svg";
 
 export const Header = () => {
-  const token = true;
+  const token = localStorage.getItem("@NomadRoom:token");
 
   const [tablet] = useMediaQuery("(min-width: 550px)");
 
@@ -55,7 +53,6 @@ export const Header = () => {
                     fontWeight="500"
                   >
                     Leonardo {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-                    
                   </MenuButton>
                   <MenuList border="none">
                     <Flex flexDirection="column">
@@ -86,6 +83,10 @@ export const Header = () => {
                         }}
                         as={ReachLink}
                         to="/"
+                        onClick={() => {
+                          localStorage.removeItem("@NomadRoom:token");
+                          localStorage.removeItem("@NomadRoom:userId");
+                        }}
                       >
                         Sair
                       </Link>
@@ -97,7 +98,9 @@ export const Header = () => {
           </Flex>
         ) : (
           <ButtonGroup gap="2" mt="15px">
-            <Button
+            <Link
+              as={ReachLink}
+              to="/register"
               color="#ffffff"
               bg="#40C057"
               border="none"
@@ -109,8 +112,10 @@ export const Header = () => {
               }}
             >
               Cadastrar-se
-            </Button>
-            <Button
+            </Link>
+            <Link
+              as={ReachLink}
+              to="/login"
               color="#ffffff "
               bg="#40C057"
               border="none"
@@ -122,7 +127,7 @@ export const Header = () => {
               }}
             >
               Login
-            </Button>
+            </Link>
           </ButtonGroup>
         )}
       </Flex>

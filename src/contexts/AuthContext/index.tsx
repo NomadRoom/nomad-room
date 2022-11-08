@@ -80,8 +80,10 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
       api.defaults.headers.authorization = `Bearer ${token}`;
       data = { ...data, validation: true };
       await api.patch(`/users/${userId}`, data);
-      navigate("/login");
+      toast.success("Usuario atualizado com sucesso!");
+      navigate("/dashboard");
     } catch (error) {
+      toast.error("Algo deu errado");
       console.log(error);
     }
   };

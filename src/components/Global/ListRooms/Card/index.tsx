@@ -1,6 +1,5 @@
-import { StarIcon } from "@chakra-ui/icons";
 import { Box, Icon, IconButton, Image, Text } from "@chakra-ui/react";
-import { MdFavorite, MdFavoriteBorder, MdLocationPin } from "react-icons/md";
+import { MdFavoriteBorder, MdLocationPin } from "react-icons/md";
 
 export interface iRoom {
   title: string;

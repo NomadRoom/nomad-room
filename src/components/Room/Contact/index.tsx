@@ -25,7 +25,6 @@ export const Contact = ({ contact, user }: iContactProps) => {
           href={`https://api.whatsapp.com/send?phone=55${contact}&text=${textMsg}`}
           target="_blank"
         >
-          {" "}
           <BsWhatsapp />
           WhatsApp
         </a>

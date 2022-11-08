@@ -3,18 +3,18 @@ import { api } from "../../services/api";
 import { Header } from "../Global/Header";
 import { HeadlineBig } from "../Global/Headlines/HeadlineBig";
 import { Box, IconButton, Image, Text, Icon } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
 import { MdLocationPin } from "react-icons/md";
 
 export const Homepage = () => {
   const [listRooms, setListRooms] = useState<any>([]);
+  console.log(listRooms);
 
   useEffect(() => {
     const getRooms = async () => {
       await api
         .get("/rooms")
         .then((resp) => {
-          setListRooms(resp);
+          setListRooms(resp.data);
         })
         .catch((err) => {
           console.log(err);
@@ -33,9 +33,10 @@ export const Homepage = () => {
         </HeadlineBig>
 
         <ul>
-          {listRooms.data?.length
-            ? listRooms.data.map((e: any) => (
+          {listRooms.length
+            ? listRooms.map((e: any) => (
                 <Box
+                  key={e.id}
                   display="flex"
                   flexDirection="column"
                   justifyContent="center"
@@ -93,13 +94,12 @@ export const Homepage = () => {
                         alignSelf="flex-start"
                         m="5"
                       >
-                        <Icon as={MdLocationPin} w={5} h={5} /> {e.localization.street} -{" "}
-                        {e.localization.state}
+                        <Icon as={MdLocationPin} w={5} h={5} />
+                        {e.localization?.street} -{e.localization?.state}
                       </Text>
                     </Box>
                     <IconButton
                       aria-label="Search database"
-                      icon={<StarIcon />}
                       alignSelf="flex-start"
                       m="5"
                       position={"absolute"}

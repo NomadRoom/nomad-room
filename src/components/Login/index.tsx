@@ -1,3 +1,47 @@
-export const index = () => {
-  return <span>Apagar arquvio index.tsx</span>;
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import SchemaLogin from "../../validation/schemaLogin";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/userContext";
+import { StyledButton } from "../../styles/components/Button";
+import { StyledInput } from "../../styles/components/Input";
+import { ContainerFormLogin, FormLogin } from "./styles";
+import { iUserLogin } from "../../contexts/userContext/types";
+import { HeadlineMedium } from "../Global/Headlines/HeadlineMedium";
+
+const Login = () => {
+  const { login } = useContext(AuthContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iUserLogin>({
+    resolver: yupResolver(SchemaLogin),
+  });
+
+  return (
+    <>
+      <HeadlineMedium />
+
+      <ContainerFormLogin>
+        <FormLogin onSubmit={handleSubmit(login)}>
+          <h2>Faça seu Login</h2>
+          <label htmlFor="Email"></label>
+          <StyledInput placeholder="Email" {...register("email")} />
+          <p>{errors.email?.message}</p>
+          <label htmlFor="Senha"></label>
+          <StyledInput placeholder="Senha" {...register("password")} />
+          <p>{errors.password?.message}</p>
+          <StyledButton type="submit">Entrar</StyledButton>
+        </FormLogin>
+      </ContainerFormLogin>
+
+      <ToastContainer />
+    </>
+  );
 };
+
+export default Login;

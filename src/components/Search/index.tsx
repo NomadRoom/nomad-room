@@ -12,16 +12,16 @@ import {
   StyledSearchApi,
 } from "../../styles/components/Search";
 
-interface iCity {
+export interface iCity {
   city: string;
 }
 
-interface iCityResponseApi {
+export interface iCityResponseApi {
   sigla: string;
   nome: string;
 }
 
-export const SearchDashboard = () => {
+export const SearchDashboard = ({ SearchClick, SearchOptionClick }: any) => {
   const [cityResults, setCityResults] = useState([]);
 
   const validationSchema = yup.object().shape({
@@ -33,8 +33,8 @@ export const SearchDashboard = () => {
   });
 
   const onSubmit = async (cityInput: iCity) => {
-    console.log(cityInput.city);
     //Chamar os quartos por aqui
+    SearchClick(cityInput);
   };
 
   const onChange = async (e: any) => {
@@ -81,9 +81,10 @@ export const SearchDashboard = () => {
               <li
                 key={citys.sigla}
                 onClick={() => {
-                  console.log(citys.nome);
+                  // console.log(citys.nome);
                   setCityResults([]);
                   //Chamar os quartos por aqui
+                  SearchOptionClick(citys);
                 }}
               >
                 {citys.nome}

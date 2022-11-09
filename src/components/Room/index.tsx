@@ -55,8 +55,6 @@ export interface iRoom {
 export const Room = () => {
   const [room, setRoom] = useState({} as iRoom);
   const { id } = useParams();
-  console.log(room.contact);
-  console.log(room.user);
 
   useEffect(() => {
     const getRoom = async () => {
@@ -67,7 +65,7 @@ export const Room = () => {
       });
 
       const { data } = response;
-      console.log(data);
+
       setRoom(data);
     };
 

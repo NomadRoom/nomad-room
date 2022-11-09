@@ -14,10 +14,11 @@ export const Favorites = () => {
     const favRoom = async () => {
       const response = await api.get(`/favorites?userId=${userInfo.id}`);
       const { data } = response;
+
       setFavorites(data);
     };
     favRoom();
-  }, []);
+  }, [userInfo]);
 
   return (
     <>

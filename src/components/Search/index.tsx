@@ -81,9 +81,8 @@ export const SearchDashboard = ({ SearchClick, SearchOptionClick }: any) => {
               <li
                 key={citys.sigla}
                 onClick={() => {
-                  // console.log(citys.nome);
                   setCityResults([]);
-                  //Chamar os quartos por aqui
+
                   SearchOptionClick(citys);
                 }}
               >

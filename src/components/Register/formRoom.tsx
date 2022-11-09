@@ -21,6 +21,7 @@ import {
 import { api } from "../../services/api";
 import { StyledButton } from "../../styles/components/Button";
 import { Header } from "../Global/Header";
+import { useNavigate } from "react-router-dom";
 
 interface iCep {
   cep: string;
@@ -35,7 +36,7 @@ interface iCep {
   siafi: string;
 }
 
-interface iForm {
+export interface iForm {
   title: string;
   description: string;
   gym: boolean;
@@ -66,6 +67,7 @@ export type FieldErrors<TFieldValues extends iForm = iForm> = DeepMap<
 >;
 
 export const FormRoom = () => {
+  const navigate = useNavigate();
   const [neighborhood, setNeighborhood] = useState<string>("");
   const [cityState, setCityState] = useState<string>("");
   const [street, setStreet] = useState<string>("");
@@ -134,22 +136,21 @@ export const FormRoom = () => {
           Authorization: `Bearer ${localStorage.getItem("@NomadRoom:token")}`,
         },
       });
+      navigate("/dashboard");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const cepListener = async (event: any) => {
     if (event.target.value.length === 8) {
-      console.log("batata");
       try {
         let response = await cepRequest.get<iCep>(`${event.target.value}/json`);
-        console.log(response);
         setNeighborhood(response.data.bairro);
         setCityState(`${response.data.localidade}, ${response.data.uf}`);
         setStreet(response.data.logradouro);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   };

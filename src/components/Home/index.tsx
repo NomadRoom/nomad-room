@@ -7,7 +7,6 @@ import { Text } from "@chakra-ui/react";
 
 export const Home = () => {
   const [listRooms, setListRooms] = useState<any>([]);
-  console.log(listRooms);
 
   useEffect(() => {
     const getRooms = async () => {
@@ -17,7 +16,7 @@ export const Home = () => {
           setListRooms(resp.data);
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     };
     getRooms();

@@ -30,6 +30,7 @@ export interface iUser {
   profession: string;
   token: string;
   profile_photo: string;
+  rooms_favorits: number[];
 }
 export interface iUserLogin {
   email: string;

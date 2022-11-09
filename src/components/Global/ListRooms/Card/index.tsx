@@ -13,13 +13,8 @@ export interface iRoom {
 }
 
 export const Card = ({ room }: any) => {
-  const {
-    title,
-    description,
-    room_photo,
-    id,
-    localization: { state, street },
-  } = room;
+  console.log(room);
+  const { title, description, room_photo, id } = room;
   return (
     <Box
       as="li"
@@ -45,7 +40,7 @@ export const Card = ({ room }: any) => {
         position={"relative"}
       >
         <Image
-          src={room_photo}
+          src={room.room_photo || room.room_img}
           alt={`room photo`}
           maxW="298"
           maxH="158.67"
@@ -84,10 +79,13 @@ export const Card = ({ room }: any) => {
             alignSelf="flex-start"
             m="5"
           >
-            <Icon as={MdLocationPin} w={5} h={5} /> {street} - {state}
+            <Icon as={MdLocationPin} w={5} h={5} />{" "}
+            {room.localization?.street || room.location?.street} -{" "}
+            {room.localization?.state || room.location?.city}
           </Text>
         </Box>
         <IconButton
+          id={id}
           className="favBtn"
           aria-label="Search database"
           icon={<MdFavoriteBorder />}

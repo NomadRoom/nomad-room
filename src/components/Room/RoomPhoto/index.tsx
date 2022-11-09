@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 
 interface iRoomPhoto {
-  urlImg: string;
+  urlImg: string | undefined;
 }
 
 export const RoomPhoto = ({ urlImg }: iRoomPhoto) => {

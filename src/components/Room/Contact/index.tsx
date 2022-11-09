@@ -3,7 +3,7 @@ import { Container, ContainerCard, ContainerUser } from "./styles";
 import { BsWhatsapp } from "react-icons/bs";
 
 interface iContactProps {
-  contact: number;
+  contact: number | string;
   user: iUser;
 }
 

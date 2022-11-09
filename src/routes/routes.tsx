@@ -6,6 +6,8 @@ import { HomePage } from "../pages/home";
 import { LoginPage } from "../pages/login";
 import { RegisterPage } from "../pages/register";
 import { RoomPage } from "../pages/room";
+import { FavoritesPage } from "../pages/favorites";
+import { FormRoomPage } from "../pages/provideRoom";
 
 export const RoutesMain = () => {
   return (
@@ -18,7 +20,9 @@ export const RoutesMain = () => {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/validation" element={<ValidationPage />} />
         <Route path="/room/:id" element={<RoomPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
       </Route>
+      <Route path="/register/room" element={<FormRoomPage />} />
     </Routes>
   );
 };

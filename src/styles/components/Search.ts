@@ -97,6 +97,7 @@ export const StyledSearchApi = styled.ul`
   width: 90%;
   background-color: var(--color-white);
   position: absolute;
+  z-index: 1;
   top: 322px;
   list-style: none;
   border-radius: 0 0 10px 10px;

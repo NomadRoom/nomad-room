@@ -11,6 +11,7 @@ import { useState } from "react";
 import { cepRequest } from "../../services/cep";
 import { StyledInput } from "../../styles/components/Input";
 import {
+  BorderHeader,
   ContainerAboutRoom,
   ContainerFormRoom,
   ContainerRegisterRoom,
@@ -19,6 +20,7 @@ import {
 } from "../../styles/components/FormRoom";
 import { api } from "../../services/api";
 import { StyledButton } from "../../styles/components/Button";
+import { Header } from "../Global/Header";
 
 interface iCep {
   cep: string;
@@ -40,14 +42,14 @@ interface iForm {
   internet: boolean;
   tv: boolean;
   garage: boolean;
-  pets: boolean;
-  furniture: boolean;
-  CEP: string;
-  neighborhood: string;
-  cityState: string;
+  animals: boolean;
+  furnished: boolean;
+  zip_code: string;
+  district: string;
+  state: string;
   street: string;
   number: string;
-  photo: string;
+  room_photo: string;
   contact: string;
 }
 
@@ -77,17 +79,17 @@ export const FormRoom = () => {
     internet: yup.bool(),
     tv: yup.bool(),
     garage: yup.bool(),
-    pets: yup.bool(),
-    furniture: yup.bool(),
-    CEP: yup
+    animals: yup.bool(),
+    furnished: yup.bool(),
+    zip_code: yup
       .string()
       .required("CEP obrigatorio")
       .matches(/\d{8}/, "Cep invalido"),
-    neighborhood: yup.string().required("Bairro obrigatorio"),
-    cityState: yup.string().required("Localização obrigatoria"),
+    district: yup.string().required("Bairro obrigatorio"),
+    state: yup.string().required("Localização obrigatoria"),
     street: yup.string().required("Logradouro obrigatorio"),
     number: yup.string().required("Numero obrigatorio"),
-    photo: yup.string().required("Foto obrigatoria"),
+    room_photo: yup.string().required("Foto obrigatoria"),
     contact: yup
       .string()
       .required("Contato obrigatorio")
@@ -103,39 +105,35 @@ export const FormRoom = () => {
   });
 
   const onSubmitForm = async (data: iForm) => {
+    const userId = localStorage.getItem("@NomadRoom:userId");
     let bodyReq = {
-      userId: localStorage.getItem("@NomadRoom:userId"),
+      userId: userId,
       title: data.title,
       description: data.description,
       about: {
         gym: data.gym,
         garage: data.garage,
         internet: data.internet,
-        animals: data.pets,
+        animals: data.animals,
         tv: data.tv,
-        furnished: data.furniture,
+        furnished: data.furnished,
       },
-      location: {
-        postal_code: data.CEP,
-        district: data.neighborhood,
+      localization: {
+        zip_code: data.zip_code,
+        district: data.district,
         street: data.street,
-        city: data.cityState,
+        state: data.state,
         number: data.number,
       },
-      room_img: data.photo,
+      room_photo: data.room_photo,
       contact: data.contact,
-    }
-    console.log(bodyReq)
+    };
     try {
-      await api.post(
-        "/rooms",
-        bodyReq,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("@NomadRoom:token")}`,
-          },
-        }
-      );
+      await api.post("/rooms", bodyReq, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@NomadRoom:token")}`,
+        },
+      });
     } catch (err) {
       console.log(err);
     }
@@ -156,108 +154,125 @@ export const FormRoom = () => {
     }
   };
   return (
-    <ContainerRegisterRoom>
-      <h2>Disponibilize seu quarto</h2>
-      <ContainerFormRoom onSubmit={handleSubmit(onSubmitForm)}>
-        <label htmlFor="title">Titulo*</label>
-        <StyledInput id="title" type="text" {...register("title")} />
-        <Error>{errors.title?.message}</Error>
-        <label htmlFor="description">Descrição*</label>
-        <textarea
-          cols={30}
-          rows={10}
-          id="description"
-          {...register("description")}
-        ></textarea>
-        <Error>{errors.description?.message}</Error>
-        <label htmlFor="about">Sobre o quarto</label>
-        <ContainerAboutRoom id="about">
-          <li>
-            <input type="checkbox" {...register("gym")} />
-            <label htmlFor="gym">Academia</label>
-          </li>
-          <li>
-            <input type="checkbox" {...register("internet")} />
-            <label htmlFor="internet">Internet</label>
-          </li>
-          <li>
-            <input type="checkbox" {...register("tv")} />
-            <label htmlFor="tv">Tv</label>
-          </li>
-          <li>
-            <input type="checkbox" {...register("garage")} />
-            <label htmlFor="garage">Garagem</label>
-          </li>
-          <li>
-            <input type="checkbox" {...register("pets")} />
-            <label htmlFor="pets">Aceita animais</label>
-          </li>
-          <li>
-            <input type="checkbox" {...register("furniture")} />
-            <label htmlFor="furniture">Mobiliado</label>
-          </li>
-        </ContainerAboutRoom>
-        <label htmlFor="location">Localização do quarto*</label>
-        <LocationRoom id="location">
+    <>
+      <Header />
+      <BorderHeader />
+      <ContainerRegisterRoom>
+        <h2>Disponibilize seu quarto</h2>
+        <ContainerFormRoom onSubmit={handleSubmit(onSubmitForm)}>
+          <label htmlFor="title">Titulo*</label>
           <StyledInput
+            id="title"
             type="text"
-            {...register("CEP")}
-            onChange={cepListener}
-            placeholder="CEP (somente numeros)"
+            placeholder="Ex: Quarto com vista para mar no Flamengo "
+            {...register("title")}
           />
-          <Error>{errors.CEP?.message}</Error>
-          <StyledInput
-            type="text"
-            value={neighborhood}
-            {...register("neighborhood")}
-            onChange={(event) => {
-              setNeighborhood(event.target.value);
-            }}
-            placeholder="Bairro"
-          />
-          <Error>{errors.neighborhood?.message}</Error>
-          <StyledInput
-            type="text"
-            value={cityState}
-            {...register("cityState")}
-            onChange={(event) => {
-              setCityState(event.target.value);
-            }}
-            placeholder="Cidade e Estado"
-          />
-          <Error>{errors.cityState?.message}</Error>
-          <StyledInput
-            type="text"
-            value={street}
-            {...register("street")}
-            onChange={(event) => {
-              setStreet(event.target.value);
-            }}
-            placeholder="Logradouro"
-          />
-          <Error>{errors.street?.message}</Error>
-          <StyledInput
-            type="text"
-            {...register("number")}
-            placeholder="Numero"
-          />
-          <Error>{errors.number?.message}</Error>
-        </LocationRoom>
-        <StyledInput
-          type="text"
-          {...register("photo")}
-          placeholder="Url da foto"
-        />
-        <Error>{errors.photo?.message}</Error>
-        <StyledInput
-          type="text"
-          {...register("contact")}
-          placeholder="Contato"
-        />
-        <Error>{errors.contact?.message}</Error>
-        <StyledButton type="submit">Disponibilizar</StyledButton>
-      </ContainerFormRoom>
-      <p>Todas as informações com (*) são obrigatórias</p>
-    </ContainerRegisterRoom>
+          <Error>{errors.title?.message}</Error>
+          <label htmlFor="description">Descrição*</label>
+          <textarea
+            cols={30}
+            rows={10}
+            id="description"
+            placeholder="Descreava bem sua acomandação, quem você está procurando. Mão informe dados pessoais."
+            {...register("description")}
+          ></textarea>
+          <Error>{errors.description?.message}</Error>
+          <label htmlFor="about">Sobre o quarto</label>
+          <ContainerAboutRoom id="about">
+            <li>
+              <input type="checkbox" id="gym" {...register("gym")} />
+              <label htmlFor="gym">Academia</label>
+            </li>
+            <li>
+              <input type="checkbox" id="internet" {...register("internet")} />
+              <label htmlFor="internet">Internet</label>
+            </li>
+            <li>
+              <input type="checkbox" id="tv" {...register("tv")} />
+              <label htmlFor="tv">Tv</label>
+            </li>
+            <li>
+              <input type="checkbox" id="garage" {...register("garage")} />
+              <label htmlFor="garage">Garagem</label>
+            </li>
+            <li>
+              <input type="checkbox" id="pets" {...register("animals")} />
+              <label htmlFor="pets">Aceita animais</label>
+            </li>
+
+            <li>
+              <input
+                type="checkbox"
+                id="furniture"
+                {...register("furnished")}
+              />
+              <label htmlFor="furniture">Mobiliado</label>
+            </li>
+          </ContainerAboutRoom>
+          <label htmlFor="location">Localização do quarto*</label>
+          <LocationRoom id="location">
+            <StyledInput
+              type="text"
+              {...register("zip_code")}
+              onChange={cepListener}
+              placeholder="CEP (somente numeros)"
+            />
+            <Error>{errors.zip_code?.message}</Error>
+            <StyledInput
+              type="text"
+              value={neighborhood}
+              {...register("district")}
+              onChange={(event) => {
+                setNeighborhood(event.target.value);
+              }}
+              placeholder="Bairro"
+            />
+            <Error>{errors.district?.message}</Error>
+            <StyledInput
+              type="text"
+              value={cityState}
+              {...register("state")}
+              onChange={(event) => {
+                setCityState(event.target.value);
+              }}
+              placeholder="Cidade e Estado"
+            />
+            <Error>{errors.state?.message}</Error>
+            <StyledInput
+              type="text"
+              value={street}
+              {...register("street")}
+              onChange={(event) => {
+                setStreet(event.target.value);
+              }}
+              placeholder="Logradouro"
+            />
+            <Error>{errors.street?.message}</Error>
+            <StyledInput
+              type="text"
+              {...register("number")}
+              placeholder="Numero"
+            />
+            <Error>{errors.number?.message}</Error>
+
+            <StyledInput
+              type="text"
+              {...register("room_photo")}
+              placeholder="Url da foto"
+            />
+            <Error>{errors.room_photo?.message}</Error>
+            <StyledInput
+              type="text"
+              {...register("contact")}
+              placeholder="Contato"
+            />
+            <Error>{errors.contact?.message}</Error>
+          </LocationRoom>
+
+          <StyledButton type="submit">Disponibilizar</StyledButton>
+          <p>Todas as informações com (*) são obrigatórias</p>
+        </ContainerFormRoom>
+      </ContainerRegisterRoom>
+    </>
   );
 };

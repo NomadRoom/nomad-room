@@ -6,9 +6,11 @@ interface iTitleLocalization {
 }
 
 export const TitleLocalization = ({ room }: iTitleLocalization) => {
-  const { title, localization } = room;
-  const { street, district } = localization;
-  const fullLocalization = `${street}, ${district}`;
+  const { title } = room;
+  // const { street, district } = localization;
+  const fullLocalization = `${
+    room.localization?.street || room.location?.street
+  }, ${room.localization?.district || room.location?.district}`;
 
   return (
     <Container>

@@ -33,15 +33,21 @@ export interface iRoom {
     animals: boolean;
     furnished: boolean;
   };
-  localization: {
+  localization?: {
     zip_code: string;
     district: string;
     state: string;
     street: string;
     number: number;
   };
-  room_photo: string;
-  contact: number;
+  location?: {
+    street: string;
+    city: string;
+    district: string;
+  };
+  room_img?: string;
+  room_photo?: string;
+  contact: number | string;
   id: number;
   user: iUser;
 }
@@ -75,7 +81,7 @@ export const Room = () => {
           <Header />
           <ContainerWrapper>
             <ContainerPhotoContact>
-              <RoomPhoto urlImg={room.room_photo} />
+              <RoomPhoto urlImg={room.room_photo || room.room_img} />
               <Contact contact={room.contact} user={room.user} />
             </ContainerPhotoContact>
 

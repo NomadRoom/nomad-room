@@ -5,7 +5,7 @@ export interface iRoom {
   title: string;
   description: string;
   room_photo: string;
-  id: string;
+  id: number;
   localization: {
     street: string;
     state: string;
@@ -17,26 +17,29 @@ export const Card = ({ room }: any) => {
     title,
     description,
     room_photo,
+    id,
     localization: { state, street },
   } = room;
   return (
     <Box
       as="li"
+      id={id}
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      my="5"
+      my="9"
+      w="100%"
       cursor="pointer"
     >
       <Box
-        w={["358px", "358px", "1170px", "1170px"]}
+        w="100%"
         rounded="8px"
         overflow="hidden"
         boxShadow="sm"
         bg="rgb(250 250 250)"
         display="flex"
-        flexDirection={["column", "column", "row", "row"]}
+        flexDirection={["column", "column", "column", "row"]}
         justifyContent="center"
         alignItems="center"
         position={"relative"}
@@ -58,7 +61,14 @@ export const Card = ({ room }: any) => {
           justifyContent="center"
           alignItems="flex-start"
         >
-          <Text mx="5" as="h2" fontWeight="semibold" fontSize="xl" my="5">
+          <Text
+            mx="5"
+            as="h2"
+            fontWeight="semibold"
+            fontSize="xl"
+            my="5"
+            w="80%"
+          >
             {title}
           </Text>
           <Text mx="5" noOfLines={3}>
@@ -78,6 +88,7 @@ export const Card = ({ room }: any) => {
           </Text>
         </Box>
         <IconButton
+          className="favBtn"
           aria-label="Search database"
           icon={<MdFavoriteBorder />}
           fontSize="22px"

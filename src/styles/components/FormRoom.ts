@@ -10,9 +10,10 @@ export const ContainerRegisterRoom = styled.div`
   width: 90%;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 100px;
 
-  h3 {
-    font-size: 1.5rem;
+  h2 {
+    font-size: 2rem;
     font-weight: 700;
 
     @media (min-width: 740px) {
@@ -62,6 +63,10 @@ export const ContainerFormRoom = styled.form`
     background-color: var(--color-gray5);
     border-radius: 10px;
   }
+
+  p {
+    text-align: start;
+  }
 `;
 
 export const ContainerAboutRoom = styled.ul`
@@ -69,52 +74,48 @@ export const ContainerAboutRoom = styled.ul`
   flex-direction: row;
   justify-content: space-between;
   gap: 22px;
-  width: 253px;
+  width: 257px;
   flex-wrap: wrap;
   position: relative;
   list-style: none;
 
   li {
-    font-size: 1.125rem;
-    text-align: start;
-    display: flex;
-    width: 40%;
-  }
-
-  label {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 5px;
     font-size: 1rem;
-    font-weight: 400;
-    margin-left: 5px;
+    display: flex;
+    gap: 5px;
 
-    input {
+    label {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 5px;
+      font-size: 1rem;
+      font-weight: 400;
+      margin-left: 5px;
+    }
+    input[type="checkbox"] {
       width: 20px;
-      height: 14px;
+      height: 20px;
+      background-color: var(--color-gray5);
+      border-radius: 24px;
       cursor: pointer;
     }
-
-    input:checked {
-      /* width: 30px;
-      height: 30px;
-      background-color: red; */
+    input[type="checkbox"]:checked {
+      accent-color: var(--color-primary);
     }
   }
-
-  label:nth-child(3) {
-    margin-right: 36px;
+  li:nth-child(2) {
+    margin-right: 12px;
   }
-  label:nth-child(7) {
-    margin-right: 36px;
+  li:nth-child(6) {
+    margin-right: -4px;
   }
 `;
 
 export const LocationRoom = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
   width: 253px;
 
   h3 {
@@ -125,4 +126,11 @@ export const LocationRoom = styled.div`
 
 export const Error = styled.p`
   color: var(--color-error);
+`;
+
+export const BorderHeader = styled.div`
+  background-color: var(--color-gray4);
+  width: 100%;
+  height: 1px;
+  margin-bottom: 40px;
 `;

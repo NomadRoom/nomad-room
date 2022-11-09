@@ -22,7 +22,7 @@ export const FormRegister = styled.form`
   padding: 40px;
 
   p {
-    height: 12px;
+    height: 20px;
   }
 
   h2 {
@@ -33,9 +33,14 @@ export const FormRegister = styled.form`
     line-height: 28px;
     color: var(--color-gray1);
     align-self: flex-start;
+    margin-bottom: 10px;
     @media (max-width: 480px) {
       height: 51.82px;
       margin-right: 110px;
     }
+  }
+
+  button {
+    margin-top: 23px;
   }
 `;

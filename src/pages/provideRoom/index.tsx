@@ -1,3 +1,5 @@
-export const provideRoomPage = () => {
-  return <h1>ProvideRoomPage</h1>;
+import { FormRoom } from "../../components/providerRoom";
+
+export const FormRoomPage = () => {
+  return <FormRoom />;
 };

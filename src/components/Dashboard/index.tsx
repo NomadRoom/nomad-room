@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Global/Header";
 import { ListRooms } from "../../components/Global/ListRooms";
-import {
-  iCity,
-  iCityResponseApi,
-  SearchDashboard,
-} from "../../components/Search";
+import { iCity, iCityResponseApi, SearchDashboard } from "./Search";
 import { api } from "../../services/api";
 
 interface iResponseApiState {

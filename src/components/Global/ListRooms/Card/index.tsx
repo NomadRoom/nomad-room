@@ -1,5 +1,7 @@
 import { Box, Icon, IconButton, Image, Text } from "@chakra-ui/react";
 import { MdFavoriteBorder, MdLocationPin } from "react-icons/md";
+import { useAuthContext } from "../../../../contexts/AuthContext/hook";
+import { api } from "../../../../services/api";
 
 export interface iRoom {
   title: string;
@@ -13,8 +15,33 @@ export interface iRoom {
 }
 
 export const Card = ({ room }: any) => {
-  console.log(room);
-  const { title, description, room_photo, id } = room;
+  const { userInfo } = useAuthContext();
+
+  // const favoritButton = async (e: any) => {
+  //   const roomId = e.target.id;
+  //   const userId = Number(localStorage.getItem("@NomadRoom:userId"));
+  //   const token = localStorage.getItem("@NomadRoom:token");
+
+  //   const data = {
+  //     rooms_favorits: [roomId],
+  //   };
+  //   console.log(data);
+
+  //   const response = await api.patch(`/users/${userId}`, data, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   console.log(response.data);
+  // };
+
+  const {
+    title,
+    description,
+    room_photo,
+    id,
+    localization: { state, street },
+  } = room;
   return (
     <Box
       as="li"
@@ -35,12 +62,12 @@ export const Card = ({ room }: any) => {
         bg="rgb(250 250 250)"
         display="flex"
         flexDirection={["column", "column", "column", "row"]}
-        justifyContent="center"
+        justifyContent="flex-start"
         alignItems="center"
         position={"relative"}
       >
         <Image
-          src={room.room_photo || room.room_img}
+          src={room_photo}
           alt={`room photo`}
           maxW="298"
           maxH="158.67"
@@ -79,9 +106,7 @@ export const Card = ({ room }: any) => {
             alignSelf="flex-start"
             m="5"
           >
-            <Icon as={MdLocationPin} w={5} h={5} />{" "}
-            {room.localization?.street || room.location?.street} -{" "}
-            {room.localization?.state || room.location?.city}
+            <Icon as={MdLocationPin} w={5} h={5} /> {street} - {state}
           </Text>
         </Box>
         <IconButton

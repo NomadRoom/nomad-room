@@ -105,7 +105,7 @@ export const Header = () => {
               borderRadius="10px"
               fontWeight={["400", "700"]}
               _hover={{
-                background: "#D3FFDB",
+                filter: "brightness(1.05)",
               }}
             >
               Cadastrar-se
@@ -120,7 +120,7 @@ export const Header = () => {
               borderRadius="10px"
               fontWeight={["400", "700"]}
               _hover={{
-                background: "#D3FFDB",
+                filter: "brightness(1.05)",
               }}
             >
               Login

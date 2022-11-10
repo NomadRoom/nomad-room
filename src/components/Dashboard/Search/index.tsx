@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineKingBed } from "react-icons/md";
-import { apiEstados } from "../../services/city";
+import { apiEstados } from "../../../services/city";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -10,7 +10,7 @@ import {
   StyledContainerSearch,
   StyledFormSearch,
   StyledSearchApi,
-} from "../../styles/components/Search";
+} from "../../../styles/components/Search";
 
 export interface iCity {
   city: string;
@@ -81,9 +81,8 @@ export const SearchDashboard = ({ SearchClick, SearchOptionClick }: any) => {
               <li
                 key={citys.sigla}
                 onClick={() => {
-                  // console.log(citys.nome);
                   setCityResults([]);
-                  //Chamar os quartos por aqui
+
                   SearchOptionClick(citys);
                 }}
               >

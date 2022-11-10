@@ -1,4 +1,4 @@
-import { FormRoom } from "../../components/Register/formRoom";
+import { FormRoom } from "../../components/FormRoom";
 
 export const FormRoomPage = () => {
   return <FormRoom />;

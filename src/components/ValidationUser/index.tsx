@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { iValidation } from "../../contexts/AuthContext/types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { StyledInput } from "../../styles/components/Input";
 
 export const ValidationUser = () => {
   const { UserValidation } = useContext(AuthContext);
@@ -37,14 +38,25 @@ export const ValidationUser = () => {
         <DivInputs>
           <div>
             <label htmlFor="photo">Insira Url de sua foto</label>
-            <input type="text" id="photo" {...register("profile_photo")} />
+            <StyledInput
+              type="text"
+              id="photo"
+              {...register("profile_photo")}
+              placeholder="Ex: https://i.imgur.com/5bLyHek.jpeg"
+            />
             {errors.profile_photo && (
               <span>{errors.profile_photo.message}</span>
             )}
           </div>
           <div>
             <label htmlFor="about">Conte mais sobre você</label>
-            <textarea id="about" rows={5} cols={100} {...register("about")} />
+            <textarea
+              id="about"
+              rows={5}
+              cols={100}
+              {...register("about")}
+              placeholder="Conte um pouco masi sobre você."
+            />
             {errors.about && <span>{errors.about.message}</span>}
           </div>
         </DivInputs>

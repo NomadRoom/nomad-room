@@ -25,8 +25,12 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
       const response = await api.post("/login", data);
 
       const { user, accessToken } = response.data;
+      const newUser = {
+        ...user,
+        rooms_favorits: [],
+      };
 
-      setUserInfo(user);
+      setUserInfo(newUser);
       window.localStorage.clear();
       localStorage.setItem("@NomadRoom:token", accessToken);
       localStorage.setItem("@NomadRoom:userId", user.id);
@@ -37,8 +41,6 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
         ? "dashboard"
         : "validation";
       navigate(toNavigate, { replace: true });
-
-      console.log(user);
     } catch (error) {
       toast.error("Login não realizado");
       console.error(error);
@@ -57,7 +59,11 @@ export const AuthProvider = ({ children }: iAuthProvider) => {
       });
 
       const { data } = response;
-      setUserInfo(data);
+      const newUser = {
+        ...data,
+        rooms_favorits: [],
+      };
+      setUserInfo(newUser);
     };
     if (!userInfo.id && token) {
       GetUser();

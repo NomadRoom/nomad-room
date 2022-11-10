@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const FormValidation = styled.form`
-  width: 70%;
+  width: 100%;
+  max-width: 850px;
   margin: 0 auto;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
-  position: absolute;
+  margin-top: -90px;
   padding-bottom: 7rem;
   padding-top: 3rem;
   display: flex;
@@ -22,7 +23,6 @@ export const FormValidation = styled.form`
 
   @media (min-width: 1024px) {
     > button {
-      position: absolute;
       right: 40px;
       bottom: 30px;
       width: 15rem;
@@ -68,26 +68,24 @@ export const DivInputs = styled.div`
 
   > div > input {
     width: 100%;
-    height: 100px;
     background-color: var(--color-gray5);
   }
   > div > textarea {
     width: 100%;
     padding: 1rem;
     background-color: var(--color-gray5);
+    outline: none;
+    border-radius: var(--bd-radius);
   }
   > div > span {
     color: red;
   }
   @media (min-width: 1024px) {
-    flex-direction: row;
-
     > div:nth-child(1) {
-      width: 35%;
+      width: 100%;
     }
 
     > div > input {
-      height: 152px;
       width: 100%;
     }
   }

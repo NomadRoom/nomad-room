@@ -62,7 +62,7 @@ export const Card = ({ room }: any) => {
         bg="rgb(250 250 250)"
         display="flex"
         flexDirection={["column", "column", "column", "row"]}
-        justifyContent="center"
+        justifyContent="flex-start"
         alignItems="center"
         position={"relative"}
       >

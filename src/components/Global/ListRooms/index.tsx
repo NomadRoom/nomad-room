@@ -22,7 +22,6 @@ export const ListRooms = ({ rooms }: any) => {
           const fav = rooms.find((room: any) => +room.id === +btnFav.id);
 
           const data = {
-            id: fav.id,
             userId: userId,
             title: fav.title,
             description: fav.description,

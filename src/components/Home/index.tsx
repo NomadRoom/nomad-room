@@ -26,7 +26,7 @@ export const Home = () => {
       <>
         <Header />
         <HeadlineBig>
-          <Text color="white" fontWeight="bold" fontSize="xxl">
+          <Text color="white" fontWeight="bold" fontSize="3xl">
             Descubra lugares, faça amizades
           </Text>
         </HeadlineBig>
